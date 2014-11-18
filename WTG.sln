@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WTG.Core", "WTG.Core\WTG.Core.csproj", "{C2C4A0E9-F595-4F0C-9F7B-7E152B11E318}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WTG.Test.CoreTestConsole", "WTG.Test.CoreTestConsole\WTG.Test.CoreTestConsole.csproj", "{0E3669E4-6003-488F-B427-DD47EE287DEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WTG.Engine.Server", "WTG.Engine.Server\WTG.Engine.Server.csproj", "{8B0C071E-9E4C-4A29-8A05-FC16AD51673B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C2C4A0E9-F595-4F0C-9F7B-7E152B11E318}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2C4A0E9-F595-4F0C-9F7B-7E152B11E318}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2C4A0E9-F595-4F0C-9F7B-7E152B11E318}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2C4A0E9-F595-4F0C-9F7B-7E152B11E318}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E3669E4-6003-488F-B427-DD47EE287DEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E3669E4-6003-488F-B427-DD47EE287DEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E3669E4-6003-488F-B427-DD47EE287DEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E3669E4-6003-488F-B427-DD47EE287DEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B0C071E-9E4C-4A29-8A05-FC16AD51673B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B0C071E-9E4C-4A29-8A05-FC16AD51673B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B0C071E-9E4C-4A29-8A05-FC16AD51673B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B0C071E-9E4C-4A29-8A05-FC16AD51673B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
