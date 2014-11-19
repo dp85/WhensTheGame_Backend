@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SpotlightData.cs" />
     <Compile Include="TeamData.cs" />
     <Compile Include="WTGServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

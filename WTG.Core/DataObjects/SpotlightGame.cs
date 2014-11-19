@@ -13,15 +13,18 @@ namespace WTG.Core.DataObjects
         public int? SpotlightGameID;
         public DateTime? GameDate;
         public int? Status;
+        // TODO Make sure Headline is added to the db
+        public string Headline;
         public string Description;
 
         public SpotlightGame() { }
 
-        public SpotlightGame(int? spotlightGameID, DateTime gameDate, int status, string description)
+        public SpotlightGame(int? spotlightGameID, DateTime gameDate, int status, string headline, string description)
         {
             this.SpotlightGameID = spotlightGameID;
             this.GameDate = gameDate;
             this.Status = status;
+            this.Headline = headline;
             this.Description = description;
         }
 

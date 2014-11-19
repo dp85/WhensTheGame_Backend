@@ -449,9 +449,9 @@ namespace WTG.Core.Data
         // STATIC QUERY STRINGS
 
         private const string _SelectAllSpotlightGames = "SELECT * FROM SpotlightGames;";
-        private const string _InsertIntoSpotlightGames = "INSERT INTO SpotlightGames(GameDate, Status, Description) " +
+        private const string _InsertIntoSpotlightGames = "INSERT INTO SpotlightGames(GameDate, Status, Headline, Description) " +
                                                  "OUTPUT INSERTED.SpotlightGameID " +
-                                                 "VALUES (@GameDate, @Status, @Description)";
+                                                 "VALUES (@GameDate, @Status, @Headline, @Description)";
         private const string _DeleteFromSpotlightGames = "DELETE FROM SpotlightGames " +
                                                  "WHERE SpotlightGameID = @SpotlightGameID";
 
@@ -481,9 +481,10 @@ namespace WTG.Core.Data
                     int spotlightGameID = Convert.ToInt32(sqlDataReader[0]);
                     DateTime gameDate = Convert.ToDateTime(sqlDataReader[1]);
                     int status = Convert.ToInt32(sqlDataReader[2]);
-                    string description = Convert.ToString(sqlDataReader[3]);
+                    string headline = Convert.ToString(sqlDataReader[3]);
+                    string description = Convert.ToString(sqlDataReader[4]);
 
-                    SpotlightGame spotlightGame = new SpotlightGame(spotlightGameID, gameDate, status, description);
+                    SpotlightGame spotlightGame = new SpotlightGame(spotlightGameID, gameDate, status, headline, description);
                     spotlightGames.Add(spotlightGame);
                 }
 
@@ -510,6 +511,7 @@ namespace WTG.Core.Data
 
                 sqlCommand.Parameters.AddWithValue("@GameDate", spotlightGameToInsert.GameDate);
                 sqlCommand.Parameters.AddWithValue("@Status", spotlightGameToInsert.Status);
+                sqlCommand.Parameters.AddWithValue("@Headline", spotlightGameToInsert.Headline);
                 sqlCommand.Parameters.AddWithValue("@Description", spotlightGameToInsert.Description);
 
 

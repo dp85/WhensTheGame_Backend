@@ -21,7 +21,17 @@ namespace WTG.Engine.Server
         private static readonly TimeSpan _RecordsCacheExpiration = TimeSpan.FromMinutes(40.0);
         private const string _RecordsCacheKey = "RecordsCacheKey";
         private static object _RecordsCacheLock = new object();
+        private static readonly TimeSpan _SpotlightCacheExpiration = TimeSpan.FromMinutes(30.0);
+        private const string _SpotlightCacheKey = "SpotlightCacheKey";
+        private static object _SpotlightCacheLock = new object();
 
+        
+
+        public SpotlightData GetSpotlightGame()
+        {
+            // TODO add SpotlightGame funcitonality to Cache method
+            throw new MissingMethodException();
+        }
         /// <summary>
         /// 
         /// </summary>
