@@ -28,8 +28,8 @@ namespace WTG.Engine.Server
         public int PreviousTeamScore;
         public int PreviousOpponentScore;
         public bool WasPreviousGameHome;
-        public int PreviousTeamSeasonWins;
-        public int PreviousTeamSeasonLosses;
-        public int PreviousTeamSeasonTies;
+        public int PreviousOpponentSeasonWins;
+        public int PreviousOpponentSeasonLosses;
+        public int PreviousOpponentSeasonTies;
     }
 }

@@ -38,6 +38,7 @@ namespace WTG.Engine.Server
             // Get all of the Teams from the Cache.
             List<Team> allTeams = getCachedObject(_TeamsCacheKey, _TeamsCacheLock, _TeamsCacheExpiration) as List<Team>;
 
+
             // Get the Team object of the team that this method is currently concerned with
             // This is a linear time operation.
             Team requestedTeam = allTeams.Find(x => x.TeamID == TeamID);
@@ -54,6 +55,9 @@ namespace WTG.Engine.Server
 
             // Get All Games from the Cache
             List<Game> allGames = getCachedObject(_GamesCacheKey, _GamesCacheLock, _GamesCacheExpiration) as List<Game>;
+
+            // Get All Records from the cache
+            List<Record> allRecords = getCachedObject(_RecordsCacheKey, _RecordsCacheLock, _RecordsCacheExpiration) as List<Record>;
 
             // BEGIN Logic to find the previous and next game the Team will play
 
@@ -105,21 +109,45 @@ namespace WTG.Engine.Server
             // END Logic to find the previous and next game the Team plays
 
             // Process the Previous Game
+            processPreviousGame(teamData, previousGame, requestedTeam, allTeams, allRecords);
 
-        
+            // Process the Next Game
+            processNextGame(teamData, nextGame, requestedTeam, allTeams, allRecords);
 
-
-
-
-            
-
-
-
+            // Get the requested Teams Record
+            Record teamRecord = allRecords.Find(x => x.TeamID == requestedTeam.TeamID);
+            teamData.TeamSeasonWins = teamRecord.Wins ?? -1;
+            teamData.TeamSeasonLosses = teamRecord.Losses ?? -1;
+            teamData.TeamSeasonTies = teamRecord.Ties ?? -1;
+    
 
             return teamData;
         }
 
-        private void loadPreviousGame(TeamData teamData, Game previousGame, Team requestedTeam, List<Team> allTeams)
+        private void processNextGame(TeamData teamData, Game nextGame, Team requestedTeam, List<Team> allTeams, List<Record> allRecords)
+        {
+            teamData.NextGameDateTime = nextGame.GameDate.ToString();
+
+            // Determine if the requested Team will be the home team or visitor during the next game
+            bool isNextGameHome = nextGame.HomeTeamID == requestedTeam.TeamID;
+
+            teamData.IsNextGameHome = isNextGameHome;
+
+            int opponentID = isNextGameHome ? nextGame.VisitorTeamID : nextGame.HomeTeamID;
+            Team opponent = allTeams.Find(x => x.TeamID == opponentID);
+
+            teamData.NextOpponentCity = opponent.City;
+            teamData.NextOpponentName = opponent.TeamName;
+            teamData.NextGameBroadcast = isNextGameHome ? nextGame.HomeTeamBroadcast : nextGame.VisitorTeamBroadcast;
+
+            Record opponentRecord = allRecords.Find(x => x.TeamID == opponent.TeamID);
+
+            teamData.NextOpponentSeasonWins = opponentRecord.Wins ?? -1;
+            teamData.NextOpponentSeasonLosses = opponentRecord.Losses ?? -1;
+            teamData.NextOpponentSeasonTies = opponentRecord.Ties ?? -1;            
+        }
+
+        private void processPreviousGame(TeamData teamData, Game previousGame, Team requestedTeam, List<Team> allTeams, List<Record> allRecords)
         {
             teamData.PreviousGameDateTime = previousGame.GameDate.ToString();
 
@@ -145,7 +173,16 @@ namespace WTG.Engine.Server
                 opponentScore = previousGame.HomeTeamScore;
             }
 
+            teamData.PreviousOpponentCity = opponent.City;
+            teamData.PreviousOpponentName = opponent.TeamName;
+            teamData.PreviousOpponentScore = opponentScore;
+            teamData.PreviousTeamScore = requestedTeamScore;
 
+            Record opponentRecord = allRecords.Find(x => x.TeamID == opponent.TeamID);
+
+            teamData.PreviousOpponentSeasonWins = opponentRecord.Wins ?? -1;
+            teamData.PreviousOpponentSeasonLosses = opponentRecord.Losses ?? -1;
+            teamData.PreviousOpponentSeasonTies = opponentRecord.Ties ?? -1;
 
         }
 
